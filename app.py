@@ -59,4 +59,4 @@ def update(sno):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)#keep debug=false  when not developing because we dont want out user to see the error
+    app.run(debug=True)
