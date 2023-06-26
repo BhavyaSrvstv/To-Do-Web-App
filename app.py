@@ -18,12 +18,12 @@ class Todo(db.Model):
     def __repr__(self) -> str:
         return f"{self.sno} - {self.title}"
 
-# Create the database tables
+# Creating the database tables
 with app.app_context():
     db.create_all()
 
-@app.route('/',methods=['GET','POST'])
-def home():
+@app.route('/',methods=['GET','POST']) #'/' is binded to the home function defined further
+def home(): 
     if request.method=='POST':
        title = request.form['title']
        desc = request.form['desc']
@@ -34,14 +34,14 @@ def home():
     allTodo=Todo.query.all()
     return render_template("home.html",alltodo=allTodo)
 
-@app.route('/delete/<int:sno>')
+@app.route('/delete/<int:sno>') #The sno which is to be deleted is passed to the function
 def delete(sno):
-    todo=Todo.query.filter_by(sno=sno).first()
+    todo=Todo.query.filter_by(sno=sno).first() #filtering the table based on the sno
     db.session.delete(todo)
     db.session.commit()
     return redirect("/")
 
-@app.route('/update/<int:sno>', methods=['GET','POST'])
+@app.route('/update/<int:sno>', methods=['GET','POST']) #the sno for which the update button is pressed is passed to the update function
 def update(sno):
     if request.method=='POST':
        title = request.form['title']
