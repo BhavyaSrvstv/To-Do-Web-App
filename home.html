@@ -3,21 +3,21 @@
   Home
 {% endblock title %}
 {% block body %}
-    <div class="container-fluid">
+    <div class="container mt-5">
       <h2>Add a To-Do</h2>
       <form action="/", method="POST">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" name="title" id="title1">
+          <input type="text" class="form-control" name="title" id="title1" placeholder="Add a Title">
         </div>
         <div class="mb-3">
           <label for="desc" class="form-label">Description</label>
-          <input type="text" class="form-control" name="desc" id="desc">
+          <input type="text" class="form-control" name="desc" id="desc" placeholder="Give a Description">
         </div>
         <button type="submit" class="btn btn-outline-secondary btn-sm">Submit</button>
       </form>
     </div>
-    <div class="container-fluid my-3"> 
+    <div class="container my-3 mt-5"> 
       <h2> Your List</h2>
       {% if alltodo|length == 0 %}
       <div class="alert alert-dark" role="alert">
@@ -25,7 +25,7 @@
       </div>
       {% else %}
 
-      <table class="table table-striped">
+      <table class="table table-striped table-bordered">
         <thead>
           <tr>
             <th scope="col">SNo</th>
@@ -35,15 +35,15 @@
             <th scope="col">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
           {% for todo in alltodo %}
           <tr>
             <th scope="row">{{loop.index}}</th>
             <td>{{todo.title}}</td>
             <td>{{todo.desc}}</td>
             <td>{{todo.date_created}}</td>
-            <td><a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-secondary btn-sm mx-1">Delete</button>
-            <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-secondary btn-sm mx-1">Update</button></td>
+            <td><a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-danger btn-sm mx-1">Delete</button>
+            <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-warning btn-sm mx-1">Update</button></td>
 
 
           </tr>
